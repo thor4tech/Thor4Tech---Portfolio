@@ -4,13 +4,14 @@ import Hero from './components/Hero';
 import Methodology from './components/Methodology';
 import PainPoints from './components/PainPoints';
 import Strategy from './components/Strategy';
-import AIDemo from './components/AIDemo';
+// AIDemo removed
 import Cases from './components/Cases';
 import Experience from './components/Experience';
 import Niches from './components/Niches';
 import Bio from './components/Bio';
 import Footer from './components/Footer';
 import FloatingCTA from './components/FloatingCTA';
+import ThorChat from './components/ThorChat';
 
 const App: React.FC = () => {
   return (
@@ -19,13 +20,14 @@ const App: React.FC = () => {
       <Methodology />
       <PainPoints />
       <Strategy />
-      <AIDemo />
+      {/* AIDemo section removed */}
       <Cases />
       <Experience />
       <Niches />
       <Bio />
       <Footer />
       <FloatingCTA />
+      <ThorChat />
     </div>
   );
 };

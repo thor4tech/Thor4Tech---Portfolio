@@ -10,7 +10,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       // Polyfill to prevent "process is not defined" errors in browser environments
-      window.process = window.process || { env: { API_KEY: '' } };
+      // Added GEMINI_API_KEY support
+      window.process = window.process || { env: { API_KEY: '', GEMINI_API_KEY: '' } };
 
       tailwind.config = {
         theme: {

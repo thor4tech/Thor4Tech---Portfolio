@@ -42,8 +42,7 @@ const Hero: React.FC = () => {
             <span className="text-xs font-bold tracking-widest text-white uppercase">Método Validado • +150 Empresas</span>
           </div>
 
-          <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight tracking-tight">
-            Conheça meu portfólio de <br/>
+          <h1 className="text-4xl lg:text-7xl font-extrabold leading-tight tracking-tight">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-orange to-yellow-400 drop-shadow-sm">RESULTADOS!</span>
           </h1>
           
