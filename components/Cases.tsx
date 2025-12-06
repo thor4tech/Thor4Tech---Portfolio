@@ -1,3 +1,4 @@
+
 import React from 'react';
 import CTAButton from './CTAButton';
 import { CheckCircle2, TrendingUp, ArrowRight, Wallet, Users, Clock } from 'lucide-react';
@@ -77,7 +78,11 @@ const CaseCard = ({ name, type, description, stats, image, logo, estimatedRevenu
         )}
         
         <div className="flex justify-start">
-          <CTAButton text="QUERO ESSES NÚMEROS" className="w-full sm:w-auto py-4 px-8 text-sm shadow-none hover:shadow-neon transition-all" />
+          <CTAButton 
+            text="QUERO ESSES NÚMEROS" 
+            message="Olá! Vi os cases de sucesso no site e quero ter essa previsibilidade de faturamento."
+            className="w-full sm:w-auto py-4 px-8 text-sm shadow-none hover:shadow-neon transition-all" 
+          />
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import CTAButton from './CTAButton';
 
@@ -23,6 +24,7 @@ const FloatingCTA: React.FC = () => {
     <div className="fixed bottom-6 right-6 z-50 animate-fade-in-up md:hidden">
       <CTAButton 
         text="INSCREVER AGORA" 
+        message="Olá! Estou navegando no site e preciso de atendimento imediato."
         className="shadow-neon text-sm font-black py-4 px-8 border-2 border-white/20 backdrop-blur-md" 
       />
     </div>

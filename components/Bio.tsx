@@ -1,3 +1,4 @@
+
 import React from 'react';
 import CTAButton from './CTAButton';
 
@@ -33,7 +34,11 @@ const Bio: React.FC = () => {
 
           <div className="mt-12 w-full lg:w-auto">
             <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-white">Isso não é sorte, é <span className="underline decoration-neon-green">sistema.</span></h3>
-            <CTAButton text="QUERO FAZER PARTE DESTE SISTEMA!" className="w-full lg:w-auto shadow-neon animate-pulse-slow hover:animate-none" />
+            <CTAButton 
+              text="QUERO FAZER PARTE DESTE SISTEMA!" 
+              message="Olá! Quero implementar o Sistema Thor4Tech na minha operação."
+              className="w-full lg:w-auto shadow-neon animate-pulse-slow hover:animate-none" 
+            />
           </div>
         </div>
 

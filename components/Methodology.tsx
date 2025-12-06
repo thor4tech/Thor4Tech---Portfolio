@@ -1,3 +1,4 @@
+
 import React from 'react';
 import CTAButton from './CTAButton';
 import { Bot, Zap } from 'lucide-react';
@@ -39,7 +40,11 @@ const Methodology: React.FC = () => {
             Seu negócio passa a operar com mais velocidade, mais previsibilidade e muito mais resultado.
           </p>
           <div className="pt-4">
-            <CTAButton text="SAIBA MAIS" className="!bg-dark-blue hover:!bg-accent-orange text-white px-8 py-4 shadow-xl" />
+            <CTAButton 
+              text="SAIBA MAIS" 
+              message="Olá! Gostaria de entender melhor como a metodologia IA + Tráfego funciona para meu negócio."
+              className="!bg-dark-blue hover:!bg-accent-orange text-white px-8 py-4 shadow-xl" 
+            />
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import CTAButton from './CTAButton';
 import { Globe2 } from 'lucide-react';
@@ -29,7 +30,11 @@ const Experience: React.FC = () => {
           </p>
         </div>
 
-        <CTAButton text="QUERO ME INSCREVER NA MENTORIA" className="!bg-white !text-royal-blue hover:!bg-dark-blue hover:!text-white font-black text-lg px-10 py-5 shadow-2xl hover:shadow-none" />
+        <CTAButton 
+          text="QUERO ME INSCREVER NA MENTORIA" 
+          message="Olá Rafael! Tenho interesse na Mentoria e na gestão da Thor4Tech."
+          className="!bg-white !text-royal-blue hover:!bg-dark-blue hover:!text-white font-black text-lg px-10 py-5 shadow-2xl hover:shadow-none" 
+        />
       </div>
     </section>
   );

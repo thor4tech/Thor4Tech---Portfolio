@@ -1,3 +1,4 @@
+
 import React from 'react';
 import CTAButton from './CTAButton';
 import { Star, ShieldCheck, PlayCircle } from 'lucide-react';
@@ -29,7 +30,7 @@ const Hero: React.FC = () => {
         {/* Left Content */}
         <div className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 animate-fade-in-up">
           
-          {/* Logo Placeholder - User should replace src with local asset if available */}
+          {/* Logo Placeholder */}
           <div className="mb-4 animate-float">
              <h2 className="text-3xl lg:text-4xl font-black italic tracking-tighter text-white drop-shadow-[0_0_15px_rgba(30,136,229,0.8)]">
                THOR<span className="text-accent-blue">4</span>TECH
@@ -65,7 +66,12 @@ const Hero: React.FC = () => {
           </div>
 
           <div className="pt-2 w-full lg:w-auto flex flex-col sm:flex-row gap-4">
-            <CTAButton text="QUERO ME INSCREVER" fullWidth={false} className="shadow-neon hover:scale-105" />
+            <CTAButton 
+              text="QUERO ME INSCREVER" 
+              message="Olá! Vi o site e quero escalar minha empresa com Tráfego e IA." 
+              fullWidth={false} 
+              className="shadow-neon hover:scale-105" 
+            />
             <button className="flex items-center justify-center space-x-2 text-white font-bold px-6 py-4 rounded-xl border border-white/20 hover:bg-white/10 transition-all">
                <PlayCircle size={20} className="text-accent-blue" />
                <span>Ver Vídeo</span>
