@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { Target, TrendingUp, Cpu, AlertTriangle } from 'lucide-react';
+import { Target, AlertTriangle, Cpu } from 'lucide-react';
 
 const PainPoints: React.FC = () => {
   const points = [
@@ -35,16 +36,16 @@ const PainPoints: React.FC = () => {
         
         <div className="grid md:grid-cols-3 gap-8">
           {points.map((point, index) => (
-            <div key={index} className="group bg-deep-navy/50 border border-white/5 p-8 rounded-3xl flex flex-col items-start space-y-6 hover:border-accent-blue hover:bg-deep-navy/80 hover:shadow-glow-blue transition-all duration-300 backdrop-blur-sm cursor-default transform hover:-translate-y-1">
-              <div className="bg-dark-blue p-4 rounded-2xl border border-white/10 group-hover:scale-110 transition-transform duration-300">
+            <div key={index} className="group bg-gradient-to-b from-white/10 to-transparent border border-white/10 p-8 rounded-3xl flex flex-col items-start space-y-6 hover:border-accent-blue hover:shadow-glow-blue transition-all duration-300 backdrop-blur-md cursor-default transform hover:-translate-y-2">
+              <div className="bg-dark-blue p-4 rounded-2xl border border-white/20 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                 {point.icon}
               </div>
               <div>
-                <h4 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-1">{point.title}</h4>
+                <h4 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">{point.title}</h4>
                 <h3 className="text-xl font-bold text-white leading-snug mb-3 group-hover:text-accent-blue transition-colors">
                   {point.subtitle}
                 </h3>
-                <p className="text-gray-400 text-base leading-relaxed group-hover:text-gray-200 transition-colors">
+                <p className="text-gray-300 text-base leading-relaxed group-hover:text-white transition-colors">
                   {point.desc}
                 </p>
               </div>

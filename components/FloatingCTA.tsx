@@ -25,7 +25,8 @@ const FloatingCTA: React.FC = () => {
       <CTAButton 
         text="INSCREVER AGORA" 
         message="Olá! Estou navegando no site e preciso de atendimento imediato."
-        className="shadow-neon text-sm font-black py-4 px-8 border-2 border-white/20 backdrop-blur-md" 
+        variant="success"
+        className="py-4 px-8 text-sm" 
       />
     </div>
   );

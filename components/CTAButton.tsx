@@ -5,17 +5,27 @@ interface CTAButtonProps {
   text: string;
   className?: string;
   fullWidth?: boolean;
-  message?: string; // Mensagem personalizada para o WhatsApp
+  message?: string;
+  variant?: 'primary' | 'success' | 'outline';
 }
 
 const CTAButton: React.FC<CTAButtonProps> = ({ 
   text, 
   className = "", 
   fullWidth = false, 
-  message = "Olá! Gostaria de saber mais sobre a Thor4Tech." 
+  message = "Olá! Gostaria de saber mais sobre a Thor4Tech.",
+  variant = 'primary'
 }) => {
   const phoneNumber = "5511980470203";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+  const baseStyles = "relative overflow-hidden group font-extrabold rounded-xl transition-all duration-300 ease-out transform hover:-translate-y-1 tracking-wider uppercase text-center inline-block cursor-pointer flex items-center justify-center";
+  
+  const variants = {
+    primary: "bg-gradient-to-r from-accent-blue to-royal-blue hover:from-accent-orange hover:to-orange-600 text-white shadow-lg hover:shadow-2xl border border-white/10",
+    success: "bg-gradient-to-r from-neon-green to-green-600 text-dark-blue hover:to-neon-green hover:text-black shadow-[0_0_20px_#00ff0d] hover:shadow-[0_0_40px_#00ff0d] border border-neon-green/50",
+    outline: "bg-transparent border-2 border-accent-blue text-white hover:bg-accent-blue hover:text-white hover:shadow-glow-blue"
+  };
 
   return (
     <a 
@@ -23,11 +33,8 @@ const CTAButton: React.FC<CTAButtonProps> = ({
       target="_blank"
       rel="noopener noreferrer"
       className={`
-        relative overflow-hidden group
-        bg-gradient-to-r from-accent-blue to-royal-blue hover:from-accent-orange hover:to-orange-600
-        text-white font-extrabold py-4 px-8 rounded-xl shadow-lg 
-        transition-all duration-300 ease-out transform hover:-translate-y-1 hover:shadow-2xl
-        border border-white/10 tracking-wider uppercase text-center inline-block cursor-pointer
+        ${baseStyles}
+        ${variants[variant]}
         ${fullWidth ? 'w-full' : 'w-auto'}
         ${className}
       `}
