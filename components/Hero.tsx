@@ -51,14 +51,14 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-4 z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center h-full pt-32 lg:pt-0">
         
         {/* Left Content */}
-        <div className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 lg:space-y-8 animate-fade-in-up pb-10 lg:pb-0">
+        <div className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 lg:space-y-8 animate-fade-in-up pb-20 lg:pb-0 -mt-20 lg:mt-0 relative z-30">
           
           {/* Logo */}
-          <div className="mb-2">
-             <h2 className="text-4xl lg:text-5xl font-black italic tracking-tighter text-white drop-shadow-[0_0_20px_rgba(30,136,229,0.6)]">
+          <div className="mb-2 absolute top-[-60vh] left-0 lg:static lg:top-auto lg:left-auto">
+             <h2 className="text-3xl lg:text-5xl font-black italic tracking-tighter text-white drop-shadow-[0_0_20px_rgba(30,136,229,0.6)]">
                THOR<span className="text-accent-blue">4</span>TECH
              </h2>
-             <p className="text-[10px] tracking-[0.6em] text-accent-blue uppercase text-center lg:text-left mt-1 pl-1">Soluções Tecnológicas</p>
+             <p className="text-[8px] lg:text-[10px] tracking-[0.6em] text-accent-blue uppercase text-left mt-1 pl-1">Soluções Tecnológicas</p>
           </div>
 
           <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 rounded-full px-5 py-2 backdrop-blur-md shadow-lg">
@@ -104,31 +104,31 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Right Image - Rafael */}
-        <div className="order-1 lg:order-2 flex justify-center lg:justify-end relative group h-[450px] lg:h-[750px] items-end overflow-visible w-full mt-4 lg:mt-0">
+        <div className="order-1 lg:order-2 flex justify-center lg:justify-end relative group h-[85vh] lg:h-[850px] items-end overflow-visible w-full mt-[-10vh] lg:mt-0 pointer-events-none">
           {/* Back Glow */}
-          <div className="absolute bottom-0 w-full h-2/3 bg-gradient-to-t from-accent-blue/20 to-transparent blur-3xl rounded-full"></div>
+          <div className="absolute bottom-0 w-full h-full bg-gradient-to-t from-accent-blue/20 to-transparent blur-3xl rounded-full"></div>
           
           {/* Main Character - z-30 on desktop to stay IN FRONT of the card (z-20) */}
           <img 
             src="https://pages.greatpages.com.br/www.acria.com.br-rafaeltorquato/1764124767/imagens/desktop/3415726_1_1763478509691c8bedc91ef350645611.png" 
             alt="Rafael Torquato"
-            className="relative z-10 lg:z-30 h-full w-auto object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] filter contrast-110"
+            className="relative z-10 lg:z-30 h-full w-auto object-cover object-top drop-shadow-[0_0_50px_rgba(30,136,229,0.3)] filter contrast-110 transform scale-125 lg:scale-105 translate-y-10 lg:translate-y-0"
           />
           
           {/* Gradient Mask for Bottom Cut-off */}
-          <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-deep-navy via-deep-navy to-transparent z-40"></div>
+          <div className="absolute bottom-0 left-0 w-full h-64 lg:h-80 bg-gradient-to-t from-deep-navy via-deep-navy to-transparent z-40"></div>
           {/* Solid Fog at very bottom */}
           <div className="absolute -bottom-1 left-0 w-full h-12 bg-deep-navy z-40"></div>
           
-          {/* Floating Stats Card */}
-          {/* Mobile: Bottom Left (bottom-24 left-4), z-50 (On top) */}
-          {/* Desktop: Top Right (top-[42%] right-12), z-20 (Behind the man), Scaled up */}
-          <div className="absolute bottom-24 left-4 lg:bottom-auto lg:top-[42%] lg:right-12 bg-dark-blue/90 backdrop-blur-xl p-6 lg:p-8 rounded-3xl border border-accent-blue/30 shadow-[0_0_30px_rgba(30,136,229,0.3)] animate-float z-50 lg:z-20 transform scale-90 lg:scale-110 origin-bottom-left lg:origin-bottom-right">
+          {/* Floating Stats Card - BIGGER & REPOSITIONED */}
+          {/* Mobile: Bottom-32, Left-8, Scale-110 (Bigger & Higher) */}
+          {/* Desktop: Behind (z-20), Scale-125 (Huge), Close to head */}
+          <div className="absolute bottom-32 left-8 lg:bottom-auto lg:top-[42%] lg:right-12 bg-dark-blue/90 backdrop-blur-xl p-8 rounded-3xl border border-accent-blue/30 shadow-[0_0_30px_rgba(30,136,229,0.3)] animate-float z-50 lg:z-20 transform scale-110 lg:scale-125 origin-bottom-left lg:origin-bottom-right pointer-events-auto">
              <div className="flex items-center space-x-5">
-                <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-full bg-gradient-to-tr from-accent-blue to-cyan-400 flex items-center justify-center text-white font-black text-sm lg:text-lg shadow-lg">ROAS</div>
+                <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-gradient-to-tr from-accent-blue to-cyan-400 flex items-center justify-center text-white font-black text-lg lg:text-xl shadow-lg">ROAS</div>
                 <div>
-                   <div className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Retorno Médio</div>
-                   <div className="text-2xl lg:text-4xl font-black text-white">20x 🚀</div>
+                   <div className="text-xs lg:text-sm text-gray-400 uppercase tracking-wider font-bold mb-1">Retorno Médio</div>
+                   <div className="text-4xl lg:text-5xl font-black text-white leading-none">20x 🚀</div>
                 </div>
              </div>
           </div>
