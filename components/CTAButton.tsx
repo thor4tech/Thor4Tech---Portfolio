@@ -16,6 +16,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
   message = "Olá! Gostaria de saber mais sobre a Thor4Tech.",
   variant = 'primary'
 }) => {
+  // Garantindo o número correto
   const phoneNumber = "5511980470203";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 

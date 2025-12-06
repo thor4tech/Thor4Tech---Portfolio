@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI } from "@google/genai";
-import { MessageSquare, Send, X, Bot, Loader2, Phone, ExternalLink } from 'lucide-react';
+import { MessageSquare, Send, X, Bot, Loader2, Phone } from 'lucide-react';
 
 interface Message {
   role: 'user' | 'model';
@@ -22,23 +22,24 @@ const ThorChat: React.FC = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Helper to format text (handles links and line breaks)
+  // Formatador de texto inteligente (transforma links e quebras de linha)
   const formatMessage = (text: string) => {
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    // Regex para identificar o link do WhatsApp específico
+    const waLinkRegex = /(https:\/\/wa\.me\/5511980470203[^\s]*)/g;
 
     return text.split('\n').map((line, i) => (
       <div key={i} className={`mb-1 last:mb-0 ${line.trim() === '' ? 'h-2' : ''}`}>
         {line.split(' ').map((word, k) => {
-           if (word.match(urlRegex)) {
+           if (word.match(waLinkRegex)) {
               return (
                 <a 
                   key={k} 
                   href={word} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-neon-green underline font-bold hover:text-white transition-colors block mt-2 p-2 bg-white/10 rounded text-center"
+                  className="block mt-3 w-full bg-neon-green hover:bg-green-400 text-dark-blue font-black text-center py-3 rounded-lg shadow-neon transition-all transform hover:-translate-y-1 uppercase tracking-wider text-xs"
                 >
-                  Falar no WhatsApp Agora 🚀
+                  FALAR AGORA NO WHATSAPP 🚀
                 </a>
               );
            }
@@ -56,12 +57,12 @@ const ThorChat: React.FC = () => {
     setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
     setLoading(true);
 
-    // Timeout de segurança
+    // Timeout de segurança (12s)
     const timeoutPromise = new Promise<never>((_, reject) => 
       setTimeout(() => reject(new Error('Timeout')), 12000)
     );
 
-    // Delay mínimo UX
+    // Delay mínimo para parecer humano (1.5s)
     const minDelayPromise = new Promise<void>(resolve => setTimeout(resolve, 1500));
 
     try {
@@ -74,28 +75,26 @@ const ThorChat: React.FC = () => {
       const ai = new GoogleGenAI({ apiKey });
       
       const systemInstruction = `
-        **ROLE**: Inteligência Thor4Tech (SDR de Elite).
-        **OBJETIVO**: Convencer o lead a clicar no link do WhatsApp.
-        **ESTILO**: Curto (máx 500 chars), Persuasivo, Direto. 
+        **ROLE & PERSONA**
+        Você é a "Inteligência Thor4Tech", uma IA de elite (Nano Banana Style): Impecável, direta, confiante e focada em resultados (ROI, Escala).
         
-        **REGRAS CRÍTICAS DE FORMATAÇÃO**:
-        1. PROIBIDO usar Markdown (*, **, __). Texto puro apenas.
-        2. Use listas numeradas (1. 2. 3.) para separar ideias.
-        3. Pule linhas para facilitar a leitura no celular.
+        **OBJETIVO ÚNICO**
+        Convencer o lead a clicar no link do WhatsApp. Venda a "Reunião de Diagnóstico", nunca o preço.
 
-        **BASE DE CONHECIMENTO (RESUMIDA)**:
-        - Tráfego Pago: Escala e ROI.
-        - IA SDR: Atendimento 24/7, qualificação automática.
-        - Criativos: Branding que vende.
-        - SDR Humano: Fechamento.
+        **CONHECIMENTO (SERVIÇOS)**:
+        1. Tráfego Pago: Gestão de alta performance (Meta/Google/TikTok), Pixel, Dashboards. Argumento: "Transformamos cliques em lucro".
+        2. IA de Atendimento (SDR): CRM automático, atendimento 24/7. Argumento: "Nunca mais perca um lead".
+        3. Criatividade/Social: Branding que converte, VSL, Landing Pages.
+        4. SDR Humano: Fechamento de contratos complexos.
 
-        **DIRETRIZES DE VENDAS**:
-        1. PREÇO: Nunca fale valores. Diga: "O investimento depende do seu diagnóstico. O Rafael te passa isso agora no WhatsApp."
-        2. PERSUASÃO: Use gatilhos de Escala, Lucro e Automatização.
-        3. FIM DA MENSAGEM: Sempre termine com uma chamada para ação clara.
-
+        **REGRAS DE OURO (MANDATÓRIAS)**:
+        1. **NÃO FALE PREÇO**: Se perguntarem, diga: "O investimento é modular. Para um valor exato, o Rafael precisa fazer um diagnóstico rápido do seu cenário no WhatsApp."
+        2. **SEM MARKDOWN**: Não use negrito (**), itálico ou cabeçalhos. Texto puro.
+        3. **FORMATO**: Use listas numeradas (1. 2. 3.) e quebras de linha para facilitar a leitura.
+        4. **CURTO**: Respostas com no máximo 500 caracteres. Seja "Sniper".
+        
         **LINK OBRIGATÓRIO**:
-        Em TODA resposta, finalize com:
+        Em TODA resposta, finalize (ou inclua no meio se fizer sentido) EXATAMENTE este link:
         https://wa.me/5511980470203
       `;
 
@@ -110,8 +109,8 @@ const ThorChat: React.FC = () => {
         ],
         config: {
           systemInstruction: systemInstruction,
-          maxOutputTokens: 300,
-          temperature: 0.7, 
+          maxOutputTokens: 400,
+          temperature: 0.6, 
         }
       });
 
@@ -121,13 +120,13 @@ const ThorChat: React.FC = () => {
       ]);
 
       const result = response as any;
-      const responseText = result?.text || "Vou te passar essa informação detalhada no WhatsApp. Me chame aqui:\nhttps://wa.me/5511980470203";
+      const responseText = result?.text || "Para te dar a melhor estratégia, me chame no WhatsApp agora:\nhttps://wa.me/5511980470203";
       
       setMessages(prev => [...prev, { role: 'model', text: responseText }]);
 
     } catch (error) {
       console.error("Chat Error:", error);
-      setMessages(prev => [...prev, { role: 'model', text: "Minha conexão oscilou. Para não perdermos tempo, fale direto com o especialista:\n\nhttps://wa.me/5511980470203" }]);
+      setMessages(prev => [...prev, { role: 'model', text: "Minha conexão oscilou, mas sua estratégia não pode parar. Fale direto com o especialista:\n\nhttps://wa.me/5511980470203" }]);
     } finally {
       setLoading(false);
     }
@@ -141,10 +140,10 @@ const ThorChat: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-24 right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-6 right-4 lg:bottom-10 lg:right-10 z-50 flex flex-col items-end">
       {/* Chat Window */}
       {isOpen && (
-        <div className="mb-4 w-[320px] md:w-[360px] h-[500px] bg-deep-navy/95 backdrop-blur-xl border border-accent-blue/40 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-fade-in-up ring-1 ring-white/10">
+        <div className="mb-4 w-[calc(100vw-32px)] md:w-[360px] h-[500px] bg-deep-navy/95 backdrop-blur-xl border border-accent-blue/40 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-fade-in-up ring-1 ring-white/10">
           
           {/* Header */}
           <div className="bg-gradient-to-r from-dark-blue to-blue-900 p-4 flex items-center justify-between border-b border-white/10">
@@ -211,7 +210,7 @@ const ThorChat: React.FC = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyPress}
-                placeholder="Tire sua dúvida..."
+                placeholder="Digite sua dúvida..."
                 className="flex-1 bg-transparent py-3 pl-3 text-sm text-white placeholder-gray-500 focus:outline-none"
               />
               <button 

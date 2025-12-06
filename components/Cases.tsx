@@ -4,7 +4,7 @@ import CTAButton from './CTAButton';
 import { TrendingUp, Wallet, Users, Clock } from 'lucide-react';
 
 const CaseCard = ({ name, type, description, stats, image, estimatedRevenue }: any) => (
-  <div className="group relative bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-[2.5rem] overflow-hidden mb-20 backdrop-blur-md hover:border-accent-blue/50 transition-all duration-500 shadow-card hover:shadow-glow-blue">
+  <div className="group relative bg-gradient-to-br from-white/15 to-white/5 border border-white/20 rounded-[2.5rem] overflow-hidden mb-20 backdrop-blur-md hover:border-accent-blue/50 transition-all duration-500 shadow-card hover:shadow-glow-blue">
     <div className="grid lg:grid-cols-12 gap-0">
       
       {/* Visual Section */}
@@ -39,7 +39,7 @@ const CaseCard = ({ name, type, description, stats, image, estimatedRevenue }: a
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-4 mb-8">
           {stats.map((stat: any, index: number) => (
-            <div key={index} className="bg-dark-blue/40 p-4 rounded-2xl border border-white/5 hover:border-white/20 transition-all">
+            <div key={index} className="bg-dark-blue/40 p-4 rounded-2xl border border-white/10 hover:border-white/30 transition-all">
               <div className="flex items-center space-x-2 text-gray-400 mb-2">
                 {index === 0 ? <Wallet size={16} /> : index === 1 ? <TrendingUp size={16} /> : index === 2 ? <Users size={16} /> : <Clock size={16} />}
                 <span className="text-[10px] font-bold uppercase tracking-wider">{stat.label}</span>
@@ -70,7 +70,7 @@ const CaseCard = ({ name, type, description, stats, image, estimatedRevenue }: a
             text="QUERO ESSES NÚMEROS" 
             message="Olá! Vi os cases de sucesso no site e quero ter essa previsibilidade de faturamento."
             variant="outline"
-            className="w-full sm:w-auto py-4 px-10 text-sm hover:shadow-glow-orange" 
+            className="w-full sm:w-auto py-4 px-10 text-sm hover:shadow-glow-orange border-white/30" 
           />
         </div>
       </div>
@@ -81,7 +81,7 @@ const CaseCard = ({ name, type, description, stats, image, estimatedRevenue }: a
 const Cases: React.FC = () => {
   const cases = [
     {
-      name: "Palestrante", // Renamed from Pedro Stivalli
+      name: "Palestrante", 
       type: "Diagnóstico e Clareza",
       description: "Implementamos a estratégia completa <span class='text-white font-bold'>C1, C2 e C3 com IA no Direct e WhatsApp</span>. Com investimento médio de <span class='text-accent-orange font-bold'>R$ 8 mil/mês</span> e ticket de R$ 5 mil, o método Infinite escala há 3 anos com total previsibilidade.",
       image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=2070&auto=format&fit=crop", 
