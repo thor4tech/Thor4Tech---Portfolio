@@ -64,6 +64,14 @@ const ThorChat: React.FC = () => {
     setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
     setLoading(true);
 
+    // Timeout de segurança: Se a IA demorar mais de 12s, aborta e manda pro Whats.
+    const timeoutPromise = new Promise<never>((_, reject) => 
+      setTimeout(() => reject(new Error('Timeout')), 12000)
+    );
+
+    // Delay mínimo para parecer humano (UX)
+    const minDelayPromise = new Promise<void>(resolve => setTimeout(resolve, 1500));
+
     try {
       const apiKey = process.env.GEMINI_API_KEY || process.env.API_KEY;
       
@@ -76,33 +84,30 @@ const ThorChat: React.FC = () => {
       const systemInstruction = `
         Você é o 'Thor4Tech Brain', um consultor de elite focado em **VENDAS** e **ESCALA**.
         
-        **SEU OBJETIVO:** 
-        Tirar dúvidas breves e **PERSUADIR** o cliente a clicar no link do WhatsApp para falar com um especialista humano e fechar contrato.
-        
-        **CONTEXTO DOS SERVIÇOS (USE PARA ARGUMENTAR, MAS NUNCA FALE PREÇOS):**
-        1. **Tráfego Pago Turbo:** Gestão de anúncios, estratégia, instalação de pixel, dashboards. Foco em ROI.
-        2. **IA de Atendimento (SDR):** Atende 24/7, qualifica, agenda reuniões, CRM organizado. Fim da perda de leads.
+        **SEUS SERVIÇOS (Use para contexto, mas NUNCA passe os valores):**
+        1. **Tráfego Pago Turbo:** Gestão de anúncios, estratégia (8h), instalação de pixel, dashboards. Foco em ROI.
+        2. **IA de Atendimento (SDR):** Atende 24/7, qualifica, agenda reuniões, CRM organizado. 
         3. **Gestão Criativa:** Design, VSLs, Landing Pages de alta conversão.
         4. **Social Media:** Identidade visual, roteiros, reels, posicionamento.
-        5. **SDR Humano:** Prospecção e fechamento.
+        5. **SDR Humano:** Prospecção, ligação de vendas e fechamento.
 
         **PERFIL DO CLIENTE (Mentalidade):**
         - Empresário cansado de agências que não entregam.
-        - Tem medo de perder o "toque humano" na automação (quebre essa objeção dizendo que a IA libera humanos para o estratégico).
+        - Tem medo de perder o "toque humano" na automação.
         - Odeia demora no atendimento.
         - Quer previsibilidade e lucro.
 
         **REGRAS DE RESPOSTA (RIGOROSAS):**
-        1. **CURTA E DIRETA:** Máximo 500 caracteres. Vá direto ao ponto.
-        2. **SEM PREÇOS:** Se perguntarem valor, responda: "**Os valores dependem de um diagnóstico do seu negócio.** Toque no botão do WhatsApp para uma proposta personalizada."
-        3. **FORMATAÇÃO:** Use quebras de linha para facilitar a leitura. Use **negrito** para destacar benefícios chaves (ex: **lucro**, **automação**, **24h**).
-        4. **CTA FINAL:** Toda resposta deve terminar incentivando a ação. Ex: "Vamos implementar isso hoje?", "Chame no WhatsApp abaixo."
+        1. **CURTA E PERSUASIVA:** Máximo 500 caracteres. Vá direto ao ponto.
+        2. **SEM PREÇOS:** Se perguntarem valor, responda: "**Os valores variam conforme a complexidade do projeto.** Toque no botão do WhatsApp para um diagnóstico gratuito."
+        3. **FORMATAÇÃO:** Use quebras de linha (Enter) para facilitar a leitura. Use **negrito** para destacar benefícios chaves (ex: **lucro**, **automação**).
+        4. **CTA FINAL:** Toda resposta deve terminar incentivando a ação. Ex: "Vamos escalar?", "Toque no botão verde."
         5. **LINK:** Sempre que oportuno envie: https://wa.me/5511980470203
         
         Se o cliente apenas cumprimentar, devolva com uma pergunta de qualificação: "Olá! Você quer vender mais com **Tráfego** ou automatizar com **IA**?"
       `;
 
-      const response = await ai.models.generateContent({
+      const apiCall = ai.models.generateContent({
         model: 'gemini-2.5-flash',
         contents: [
           ...messages.map(m => ({
@@ -113,17 +118,28 @@ const ThorChat: React.FC = () => {
         ],
         config: {
           systemInstruction: systemInstruction,
-          maxOutputTokens: 300, // Força respostas curtas
+          maxOutputTokens: 350,
+          temperature: 0.7, // Criatividade controlada
         }
       });
 
-      const responseText = response.text || "Poderia repetir? Tive um breve lapso na conexão.";
+      // Corrida entre a API e o Timeout
+      // Também aguarda o delay mínimo de UX
+      const [response] = await Promise.all([
+        Promise.race([apiCall, timeoutPromise]),
+        minDelayPromise
+      ]);
+
+      // Type assertion safe check
+      const result = response as any;
+      const responseText = result?.text || "Poderia repetir? Tive um breve lapso na conexão.";
       
       setMessages(prev => [...prev, { role: 'model', text: responseText }]);
 
     } catch (error) {
       console.error("Chat Error:", error);
-      setMessages(prev => [...prev, { role: 'model', text: "Estou com alto volume de processamento. Por favor, **chame diretamente no WhatsApp** para atendimento imediato: https://wa.me/5511980470203" }]);
+      // Fallback persuasivo em caso de erro
+      setMessages(prev => [...prev, { role: 'model', text: "Minha conexão oscilou devido à alta demanda.\n\nNão perca tempo: **Chame diretamente nosso especialista no WhatsApp** para atendimento prioritário.\n\nToque no botão verde abaixo ou no link: https://wa.me/5511980470203" }]);
     } finally {
       setLoading(false);
     }
