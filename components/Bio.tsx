@@ -42,23 +42,22 @@ const Bio: React.FC = () => {
           </div>
         </div>
 
-        {/* Image Content - Rafael Principal (Story) */}
+        {/* Image Content */}
         <div className="lg:col-span-5 relative mt-12 lg:mt-0">
            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-deep-navy/50 to-deep-navy z-10"></div>
            <div className="absolute -inset-4 bg-accent-blue/20 blur-3xl rounded-full opacity-50"></div>
            
-           {/* Imagem do Rafael (Story) */}
            <img 
-             src="/Rafael%20Principal%20(Story).png"
-             alt="Rafael Torquato - História"
-             className="w-full h-auto object-cover rounded-3xl relative z-10 drop-shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
+             src="https://pages.greatpages.com.br/www.acria.com.br-rafaeltorquato/1764124767/imagens/desktop/3415726_1_1763478509691c8bedc9380188197150.png"
+             alt="Rafael Torquato Portrait"
+             className="w-full h-auto object-contain relative z-10 drop-shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
            />
            
-           {/* Rotating Brain Element - Fixed URL */}
+           {/* Rotating Brain Element */}
            <img 
-             src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1000"
+             src="https://pages.greatpages.com.br/www.acria.com.br-rafaeltorquato/1764124767/imagens/desktop/3415726_1_1763478509691c8bedc9d04886422723.png"
              alt="Brain Circuit"
-             className="absolute -top-20 -right-20 w-1/2 h-1/2 rounded-full opacity-40 animate-spin-slow mix-blend-screen"
+             className="absolute -top-20 -right-20 w-3/4 opacity-40 animate-spin-slow mix-blend-screen"
            />
         </div>
 
