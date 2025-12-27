@@ -1,20 +1,22 @@
+
 import React from 'react';
 import { Eye, MousePointerClick, ShoppingCart, ArrowRight } from 'lucide-react';
 
 const Strategy: React.FC = () => {
   return (
     <section className="relative py-24 bg-deep-navy overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 z-0 opacity-10 bg-[url('https://pages.greatpages.com.br/www.acria.com.br-rafaeltorquato/1764124767/imagens/desktop/3415726_1_1763478509691c8bedc64eb.png')] bg-cover bg-center mix-blend-overlay"></div>
+      {/* Background Pattern - Fixed URL */}
+      <div className="absolute inset-0 z-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2000')] bg-cover bg-center mix-blend-overlay"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
           <div className="relative group">
              <div className="absolute inset-0 bg-accent-blue/20 blur-3xl rounded-full group-hover:bg-accent-blue/30 transition-all duration-500"></div>
+             {/* Tech Graphic - Fixed URL */}
              <img 
-               src="https://pages.greatpages.com.br/www.acria.com.br-rafaeltorquato/1764124767/imagens/mobile/3415726_1_176347981658216716.png" 
+               src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop" 
                alt="Tech Graphic" 
-               className="relative z-10 w-full max-w-sm mx-auto animate-float drop-shadow-[0_0_15px_rgba(30,136,229,0.5)]"
+               className="relative z-10 w-full max-w-sm mx-auto animate-float drop-shadow-[0_0_15px_rgba(30,136,229,0.5)] rounded-2xl border border-white/10"
              />
           </div>
           <div className="text-center lg:text-left">
