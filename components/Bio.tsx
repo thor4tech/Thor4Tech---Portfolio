@@ -49,7 +49,7 @@ const Bio: React.FC = () => {
            
            {/* Imagem do Rafael (Story) */}
            <img 
-             src="Rafael%20Principal%20(Story).png"
+             src="/Rafael%20Principal%20(Story).png"
              alt="Rafael Torquato - História"
              className="w-full h-auto object-cover rounded-3xl relative z-10 drop-shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
            />

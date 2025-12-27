@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
           {/* Desktop Logo Position */}
           <div className="hidden lg:block mb-4">
              <img 
-               src="THOR4TECH%20png.png" 
+               src="/THOR4TECH%20png.png" 
                alt="Thor4Tech Logo" 
                className="h-20 w-auto object-contain drop-shadow-[0_0_20px_rgba(30,136,229,0.4)]" 
              />
@@ -112,7 +112,7 @@ const Hero: React.FC = () => {
           
           {/* Main Character Image */}
           <img 
-            src="Rafael%20Principal%20(topo).png" 
+            src="/Rafael%20Principal%20(topo).png" 
             alt="Rafael Torquato - Thor4Tech"
             className="relative z-10 lg:z-30 h-full w-auto object-cover lg:object-contain object-bottom filter contrast-110 transform scale-110 lg:scale-100 translate-y-10 lg:translate-y-0 mask-image-b"
           />
@@ -134,7 +134,7 @@ const Hero: React.FC = () => {
           {/* LOGO MOBILE FIXO - Abaixo do Card ROAS */}
           <div className="absolute bottom-10 left-8 z-50 lg:hidden pointer-events-auto">
              <img 
-               src="THOR4TECH%20png.png" 
+               src="/THOR4TECH%20png.png" 
                alt="Thor4Tech Logo" 
                className="h-14 w-auto object-contain drop-shadow-md" 
              />
